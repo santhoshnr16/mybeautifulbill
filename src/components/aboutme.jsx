@@ -54,7 +54,7 @@ export const AboutMe = () => {
 					<div className="grid place-items-center">
 						<img
 							src="https://raw.githubusercontent.com/santhoshnr16/mybeautifulbill/refs/heads/main/public/projects/dp.jpeg"
-							alt="avatar"
+							alt="About Me"
 							className="w-80 h-90 rounded-full object-cover shadow-md"
 						/>
 					</div>
