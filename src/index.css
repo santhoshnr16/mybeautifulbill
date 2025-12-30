@@ -29,6 +29,7 @@
   letter-spacing: 0.1em;
   white-space: nowrap;
   animation: neon-swoosh 12s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  animation-fill-mode: backwards;
   font-size: 1.9rem;
 }
 

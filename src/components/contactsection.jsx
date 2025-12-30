@@ -10,7 +10,6 @@ export const ContactSection = () => {
 	// appointment form state
 	const [name, setName] = useState("");
 	const [visitorEmail, setVisitorEmail] = useState("");
-	const [datetime, setDatetime] = useState("");
 	const [message, setMessage] = useState("");
 	const [status, setStatus] = useState(null); // { type: 'success'|'error', title?, description?, text? }
 
@@ -39,10 +38,8 @@ export const ContactSection = () => {
 		];
 		const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
 
-		// open mail client
 		window.location.href = mailto;
 
-		// nicer structured success message
 		setStatus({
 			type: "success",
 			title: "Thank you for your submission",
@@ -175,7 +172,6 @@ export const ContactSection = () => {
 								onClick={() => {
 									setName("");
 									setVisitorEmail("");
-									setDatetime("");
 									setMessage("");
 									setStatus(null);
 								}}

@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from 'tailwindcss'
+import autoprefixer from 'autoprefixer'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -11,9 +12,16 @@ const HMR_PORT = Number(process.env.VITE_HMR_CLIENT_PORT || process.env.PORT || 
 
 // https://vite.dev/config/
 export default defineConfig({
+  css: {
+    postcss: {
+      plugins: [
+        tailwindcss(),
+        autoprefixer(),
+      ],
+    },
+  },
   plugins: [
     react(), 
-    tailwindcss(),
   ],
   resolve: {
     alias: {
