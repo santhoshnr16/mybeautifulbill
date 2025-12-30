@@ -17,7 +17,6 @@ export const App = () => {
 
 	return (
 		<ErrorBoundary>
-			<DebugOverlay />
 			<Home />
 			<Toaster />
 		</ErrorBoundary>

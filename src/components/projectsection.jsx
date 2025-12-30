@@ -7,24 +7,24 @@ const projects = [
 		id: "p1",
 		title: "Project Alpha",
 		description: "A demo web app showcasing feature X and Y.",
-		img: "/projects/alpha.png",
-		repo: `${GITHUB}/project-alpha`,
+		img: "public/projects/Screenshot 2025-11-21 at 12.54.16 PM.png",
+		repo: `${GITHUB}/`,
 		path: "/projects/alpha",
 	},
 	{
 		id: "p2",
 		title: "Project Beta",
 		description: "Service for handling Z with a scalable design.",
-		img: "/projects/beta.png",
-		repo: `${GITHUB}/project-beta`,
+		img: "public/projects/Screenshot 2025-12-09 at 10.45.34 AM.png",
+		repo: `${GITHUB}/`,
 		path: "/projects/beta",
 	},
 	{
 		id: "p3",
 		title: "Project Gamma",
 		description: "Tooling and scripts for developer productivity.",
-		img: "/projects/gamma.png",
-		repo: `${GITHUB}/project-gamma`,
+		img: "public/projects/Screenshot 2025-12-10 at 10.36.47 AM.png",
+		repo: `${GITHUB}/`,
 		path: "/projects/gamma",
 	},
 ];
@@ -36,7 +36,7 @@ export const ProjectSection = () => {
 				title: project.title,
 				imgPath: project.img,
 				duration: 1200,
-				path: project.repo || project.path, // include repo/path so meteor carries it
+				path: project.repo || project.path,
 			});
 		}
 	};
@@ -94,7 +94,7 @@ export const ProjectSection = () => {
 
 								<button
 									onClick={() => handleLaunch(p)}
-									className="px-3 py-1 bg-primary/90 text-background rounded text-sm hover:opacity-95"
+									className="inline-flex items-center px-3 py-1 rounded bg-primary text-background text-sm hover:opacity-90"
 									aria-label={`Launch ${p.title} meteor`}
 								>
 									Launch

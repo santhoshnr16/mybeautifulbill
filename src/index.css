@@ -48,7 +48,7 @@
 }
 
 /* dark root overrides (kept from earlier) */
-body {
+.dark {
   --background: 222 47% 4%;
   --foreground: 213 31% 91%;
   --border: 210 16% 90%;

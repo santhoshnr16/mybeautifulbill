@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import ThemeToggle from "../components/theme-toggle";
 import StarBackground from "../components/starbackground";
 import Herosection from "../components/hero-section/herosection.jsx";
 import Navbar from "../components/navbar";
@@ -19,10 +18,7 @@ export const Home = () => {
 	}, []);
 
 	return (
-		<div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-			{/* theme toggle */}
-			<ThemeToggle />
-
+		<div className="min-h-screen bg-transparent text-foreground overflow-x-hidden">
 			{/* background effect */}
 			<StarBackground />
 
@@ -30,7 +26,7 @@ export const Home = () => {
 			<Navbar />
 
 			{/* main content */}
-			<main>
+			<main className="relative z-10 bg-transparent ">
 				<Herosection />
 				<AboutSection />
 				<SkillSection />

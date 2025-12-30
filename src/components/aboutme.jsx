@@ -1,12 +1,8 @@
 
 export const AboutMe = () => {
 	return (
-		<section id="about" className="py-24 px-4 relative">
+		<section id="about" className="py-2 px-4 relative">
 			<div className="container max-w-4xl mx-auto text-center mb-12">
-				<h2 className="text-4xl font-bold mb-8">
-					about <span className="text-primary">me</span>
-				</h2>
-
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 					<div className="text-lg leading-relaxed text-left">
 						<h3 className="font-semibold text-xl mb-4">
@@ -42,13 +38,13 @@ export const AboutMe = () => {
 						<div className="flex gap-4">
 							<a
 								href="#contact"
-								className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10"
+								className="cosmic-button"
 							>
 								Contact me
 							</a>
 							<a
 								href="#projects"
-								className="px-6 py-2 rounded-full bg-primary text-background hover:opacity-90"
+								className="cosmic-button"
 							>
 								View projects
 							</a>
@@ -56,11 +52,10 @@ export const AboutMe = () => {
 					</div>
 
 					<div className="grid place-items-center">
-						{/* Replace the src with your image path or keep as placeholder */}
 						<img
-							src="/avatar.png"
+							src="public/dp.jpeg"
 							alt="avatar"
-							className="w-40 h-40 rounded-full object-cover shadow-md"
+							className="w-80 h-90 rounded-full object-cover shadow-md"
 						/>
 					</div>
 				</div>

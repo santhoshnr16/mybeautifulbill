@@ -60,13 +60,13 @@ export const ContactSection = () => {
 
 	return (
 		<section id="contact" className="py-12 px-4">
-			<div className="container max-w-4xl mx-auto bg-card/60 rounded-lg p-6 shadow-sm">
-				<h2 className="text-2xl font-bold mb-4">Contact</h2>
-				<p className="text-muted-foreground mb-6">
+			<div className="container max-w-4xl mx-auto bg-card/60 rounded-lg p-6 shadow-sm flex flex-col items-center">
+				<h2 className="text-2xl font-bold mb-4 text-center">Contact</h2>
+				<p className="text-muted-foreground mb-6 text-center">
 					Feel free to reach out — I&apos;m available for projects and collaborations.
 				</p>
 
-				<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+				<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
 					<a
 						href={`mailto:${EMAIL}`}
 						className="flex items-center gap-3 p-4 rounded-md hover:bg-primary/5 transition"
@@ -128,21 +128,20 @@ export const ContactSection = () => {
 						</svg>
 						<div>
 							<div className="font-medium">LinkedIn</div>
-							<div className="text-sm text-muted-foreground">santhosh-n-r</div>
+							<div className="text-sm text-muted-foreground">Santhosh</div>
 						</div>
 					</a>
 				</div>
 
-				{/* Get in touch / appointment booking */}
-				<div className="mt-6">
-					<h3 className="text-lg font-semibold mb-3">Get in touch / Book an appointment</h3>
+				<div className="mt-6 w-full">
+					<h3 className="text-lg font-semibold mb-3 text-center">Get in touch / Book an appointment</h3>
 					<form onSubmit={handleSubmit} className="grid gap-3">
 						<div className="grid sm:grid-cols-2 gap-3">
 							<input
 								value={name}
 								onChange={(e) => setName(e.target.value)}
 								placeholder="Your name"
-								className="w-full p-3 rounded border bg-background/50"
+								className="w-full p-3 rounded border bg-transparent"
 								required
 								aria-label="Your name"
 							/>
@@ -150,31 +149,23 @@ export const ContactSection = () => {
 								value={visitorEmail}
 								onChange={(e) => setVisitorEmail(e.target.value)}
 								placeholder="Your email"
-								className="w-full p-3 rounded border bg-background/50"
+								className="w-full p-3 rounded border bg-transparent"
 								required
 								aria-label="Your email"
 								type="email"
 							/>
 						</div>
 
-						<input
-							value={datetime}
-							onChange={(e) => setDatetime(e.target.value)}
-							type="datetime-local"
-							className="w-full p-3 rounded border bg-background/50"
-							aria-label="Preferred date and time"
-						/>
-
 						<textarea
 							value={message}
 							onChange={(e) => setMessage(e.target.value)}
 							placeholder="Short message or notes (what you'd like to discuss)"
-							className="w-full p-3 rounded border bg-background/50 min-h-[120px]"
+							className="w-full p-3 rounded border bg-transparent min-h-[120px]"
 							required
 							aria-label="Message"
 						/>
 
-						<div className="flex items-center gap-3">
+						<div className="flex items-center justify-center gap-3">
 							<button type="submit" className="px-4 py-2 bg-primary text-background rounded">
 								Send appointment email
 							</button>
@@ -192,9 +183,8 @@ export const ContactSection = () => {
 								Clear
 							</button>
 
-							{/* render status: structured success panel or inline error */}
 							{status && status.type === "success" && (
-								<div className="ml-3 p-3 rounded-md bg-green-50 border border-green-200 text-green-800 max-w-lg" role="status" aria-live="polite">
+								<div className="p-3 rounded-md bg-green-50 border border-green-200 text-green-800 max-w-lg" role="status" aria-live="polite">
 									<div className="flex items-start justify-between gap-4">
 										<div>
 											<h4 className="font-semibold">{status.title}</h4>
@@ -208,7 +198,7 @@ export const ContactSection = () => {
 							)}
 
 							{status && status.type === "error" && (
-								<span className="ml-3 text-sm text-red-500" role="status" aria-live="polite">
+								<span className="text-sm text-red-500" role="status" aria-live="polite">
 									{status.text}
 								</span>
 							)}
