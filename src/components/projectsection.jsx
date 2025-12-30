@@ -35,7 +35,8 @@ export const ProjectSection = () => {
 			window.triggerMeteor({
 				title: project.title,
 				imgPath: project.img,
-				duration: 1000,
+				duration: 1200,
+				path: project.repo || project.path, // include repo/path so meteor carries it
 			});
 		}
 	};
@@ -53,7 +54,7 @@ export const ProjectSection = () => {
 						aria-label="View my GitHub profile"
 					>
 						<svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-							<path d="M12 .5C5.73.5.75 5.48.75 11.75c0 4.94 3.23 9.12 7.71 10.6.56.1.77-.24.77-.54 0-.27-.01-1-.02-1.96-3.14.68-3.8-1.51-3.8-1.51-.51-1.31-1.25-1.66-1.25-1.66-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 . 1.63.73 2.03.56.06-.44.39-.73.71-.9-2.51-.29-5.15-1.26-5.15-5.6 0-1.24.44-2.25 1.16-3.04-.12-.29-.5-1.45.11-3.02 0 0 .95-.3 3.12 1.16a10.86 10.86 0 012.84-.38c.96.01 1.93.13 2.84.38 2.17-1.46 3.12-1.16 3.12-1.16.61 1.57.23 2.73.11 3.02.72.79 1.16 1.8 1.16 3.04 0 4.35-2.65 5.3-5.17 5.59.4.34.75 1.03.75 2.07 0 1.5-.01 2.72-.01 3.09 0 .3.2.65.78.54 4.47-1.48 7.7-5.66 7.7-10.6C23.25 5.48 18.27.5 12 .5z"/>
+							<path d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.113.82-.26.82-.577 0-.285-.01-1-.02-1.962-3.338.725-4.042-1.611-4.042-1.611-.546-1.387-1.333-1.757-1.333-1.757-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.998.108-.775.418-1.305.76-1.605-2.665-.304-5.467-1.334-5.467-5.931 0-1.31.467-2.381 1.235-3.22-.124-.303-.54-1.524.116-3.176 0 0 1.005-.322 3.3 1.23.957-.266 1.98-.399 3-.405 1.02.006 2.043.139 3 .405 2.285-1.552 3.29-1.23 3.29-1.23.657 1.652.241 2.873.118 3.176.77.839 1.235 1.91 1.235 3.22 0 4.61-2.807 5.627-5.48 5.931.43.372.815 1.103.815 2.222 0 1.605-.014 2.896-.014 3.286 0 .32.216.697.824.577C20.565 21.796 24 17.298 24 12c0-6.627-5.373-12-12-12z"/>
 						</svg>
 						View GitHub
 					</a>
@@ -61,7 +62,11 @@ export const ProjectSection = () => {
 
 				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
 					{projects.map((p) => (
-						<div key={p.id} className="p-4 bg-card rounded-lg shadow-sm hover:shadow-md transform hover:scale-[1.02] transition-all duration-200">
+						<div
+							key={p.id}
+							className="p-4 bg-card rounded-lg shadow-sm transform hover:scale-[1.02] transition-all duration-200 cursor-pointer"
+							onClick={() => handleLaunch(p)}
+						>
 							<img src={p.img} alt={p.title} className="w-full h-36 object-cover rounded-lg mb-3" />
 							<h3 className="font-semibold text-lg">{p.title}</h3>
 							<p className="text-sm text-muted-foreground mb-4">{p.description}</p>
@@ -74,14 +79,15 @@ export const ProjectSection = () => {
 										rel="noopener noreferrer"
 										className="inline-flex items-center gap-2 px-3 py-1 rounded border border-muted-foreground text-muted-foreground hover:bg-muted-foreground/10"
 										aria-label={`View ${p.title} on GitHub`}
+										onClick={(e) => e.stopPropagation()}
 									>
 										{/* GitHub Icon */}
 										<svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-											<path d="M12 .5C5.73.5.75 5.48.75 11.75c0 4.94 3.23 9.12 7.71 10.6.56.1.77-.24.77-.54 0-.27-.01-1-.02-1.96-3.14.68-3.8-1.51-3.8-1.51-.51-1.31-1.25-1.66-1.25-1.66-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 . 1.63.73 2.03.56.06-.44.39-.73.71-.9-2.51-.29-5.15-1.26-5.15-5.6 0-1.24.44-2.25 1.16-3.04-.12-.29-.5-1.45.11-3.02 0 0 .95-.3 3.12 1.16a10.86 10.86 0 012.84-.38c.96.01 1.93.13 2.84.38 2.17-1.46 3.12-1.16 3.12-1.16.61 1.57.23 2.73.11 3.02.72.79 1.16 1.8 1.16 3.04 0 4.35-2.65 5.3-5.17 5.59.4.34.75 1.03.75 2.07 0 1.5-.01 2.72-.01 3.09 0 .3.2.65.78.54 4.47-1.48 7.7-5.66 7.7-10.6C23.25 5.48 18.27.5 12 .5z"/>
+											<path d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.113.82-.26.82-.577 0-.285-.01-1-.02-1.962-3.338.725-4.042-1.611-4.042-1.611-.546-1.387-1.333-1.757-1.333-1.757-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.998.108-.775.418-1.305.76-1.605-2.665-.304-5.467-1.334-5.467-5.931 0-1.31.467-2.381 1.235-3.22-.124-.303-.54-1.524.116-3.176 0 0 1.005-.322 3.3 1.23.957-.266 1.98-.399 3-.405 1.02.006 2.043.139 3 .405 2.285-1.552 3.29-1.23 3.29-1.23.657 1.652.241 2.873.118 3.176.77.839 1.235 1.91 1.235 3.22 0 4.61-2.807 5.627-5.48 5.931.43.372.815 1.103.815 2.222 0 1.605-.014 2.896-.014 3.286 0 .32.216.697.824.577C20.565 21.796 24 17.298 24 12c0-6.627-5.373-12-12-12z"/>
 										</svg>
 										<span className="text-sm">Repo</span>
 									</a>
-									<a href={p.path} className="inline-flex items-center px-3 py-1 rounded bg-primary text-background text-sm hover:opacity-90">
+									<a href={p.path} className="inline-flex items-center px-3 py-1 rounded bg-primary text-background text-sm hover:opacity-90" onClick={(e) => e.stopPropagation()}>
 										View
 									</a>
 								</div>

@@ -42,10 +42,11 @@ export const StarBackground = () => {
 		const duration = opts.duration ?? (Math.random() * 800 + 700); // ms
 		const title = opts.title ?? "Shooting Star";
 		const imgPath = opts.imgPath ?? null;
+		const path = opts.path ?? null;
 		const createdAt = Date.now();
 		const temporal = opts.temporal ?? duration;
 
-		const m = { id, startX, startY, length, duration, title, imgPath, createdAt, temporal };
+		const m = { id, startX, startY, length, duration, title, imgPath, path, createdAt, temporal };
 
 		setMeteors(prev => [...prev, m]);
 
@@ -61,11 +62,24 @@ export const StarBackground = () => {
 	}, []);
 
 	return (
-		<div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
+		<div style={{ position: "fixed", inset: 0, overflow: "hidden", pointerEvents: "none", zIndex: 0 }}>
 			<style>{`
-				@keyframes twinkle { 0%,100% { opacity: 0.6 } 50% { opacity: 1 } }
-				@keyframes drift { from { transform: translateY(0) } to { transform: translateY(-120vh) } }
-				@keyframes meteorMove { to { transform: translate(200vw, -200vh) rotate(-45deg); opacity: 0 } }
+				@keyframes twinkle {
+					0%,100% { opacity: 0.6; transform: scale(1); filter: drop-shadow(0 0 0 rgba(255,255,255,0)) }
+					50%     { opacity: 1; transform: scale(1.15); filter: drop-shadow(0 0 6px rgba(255,255,255,0.9)) }
+				}
+				@keyframes drift {
+					from { transform: translateY(0) }
+					to   { transform: translateY(-120vh) }
+				}
+				@keyframes meteorMove {
+					to {
+						transform: translate(200vw, -200vh) rotate(-45deg) scale(1.1);
+						opacity: 0;
+						filter: blur(2px) drop-shadow(0 0 10px rgba(255,255,255,0.9));
+					}
+				}
+				/* utility classes kept in JS styles for performance, but keyframes control glow/blur */
 			`}</style>
 
 			{stars.map((s) => (
@@ -80,9 +94,10 @@ export const StarBackground = () => {
 						background: "white",
 						borderRadius: "50%",
 						opacity: s.opacity,
-						boxShadow: "0 0 6px rgba(255,255,255,0.5)",
+						boxShadow: `0 0 ${Math.max(4, s.size * 2)}px rgba(255,255,255,${Math.min(1, s.opacity + 0.2)})`,
 						animation: `twinkle ${s.animationDuration}s ease-in-out ${Math.random() * 2}s infinite`,
 						transform: `translateY(0)`,
+						willChange: "transform, opacity, filter",
 					}}
 				/>
 			))}
@@ -94,6 +109,7 @@ export const StarBackground = () => {
 					id={`meteor-${m.id}`}
 					title={m.title}
 					data-temporal={m.temporal}
+					data-path={m.path}
 					style={{
 						position: "absolute",
 						left: `${m.startX}%`,
@@ -101,9 +117,11 @@ export const StarBackground = () => {
 						width: `${m.length * 2}px`,
 						height: "6px",
 						transform: "rotate(-45deg)",
-						animation: `meteorMove ${m.duration}ms linear forwards`,
+						animation: `meteorMove ${m.duration}ms cubic-bezier(.2,.9,.2,1) forwards`,
 						pointerEvents: "none",
 						overflow: "visible",
+						willChange: "transform, opacity, filter",
+						mixBlendMode: "screen",
 					}}
 				>
 					{m.imgPath ? (
@@ -116,14 +134,19 @@ export const StarBackground = () => {
 								objectFit: "cover",
 								display: "block",
 								transform: "rotate(45deg)",
+								filter: "drop-shadow(0 0 10px rgba(255,255,255,0.9))",
+								borderRadius: 4,
 							}}
 						/>
 					) : (
 						<div
 							style={{
 								width: "100%",
-								height: "2px",
-								background: "linear-gradient(90deg, rgba(255,255,255,1), rgba(255,255,255,0))",
+								height: "3px",
+								background: "linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.2) 40%, rgba(255,255,255,0) 100%)",
+								filter: "blur(0.8px)",
+								boxShadow: "0 0 8px rgba(255,255,255,0.9)",
+								borderRadius: 2,
 							}}
 						/>
 					)}

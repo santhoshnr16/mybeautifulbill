@@ -4,10 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "kill-port": "npx kill-port 5173",
+    "predev": "npm run kill-port || true"
   },
   "dependencies": {
     "@radix-ui/react-toast": "^1.2.15",
@@ -19,7 +21,8 @@
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.11.0",
     "tailwind-merge": "^3.4.0",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.1.18",
+    "toaster": "^0.1.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
