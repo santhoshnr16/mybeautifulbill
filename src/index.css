@@ -2,7 +2,71 @@
 @tailwind components;
 @tailwind utilities;
 
-/* your existing custom CSS and variables... */
+/* --- NEW ANIMATION LOGIC --- */
+@keyframes neon-swoosh {
+  0%, 12.5% {
+    transform: translateX(-150%) skewX(-10deg);
+    opacity: 0;
+    filter: blur(2px);
+  }
+  16.66%, 29.16% {
+    transform: translateX(0) skewX(0deg);
+    opacity: 1;
+    filter: blur(0);
+  }
+  33.33%, 100% {
+    transform: translateX(150%) skewX(10deg);
+    opacity: 0;
+    filter: blur(2px);
+  }
+}
+
+/* --- NEON PUNK STYLES --- */
+.neon-text {
+  position: absolute;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  animation: neon-swoosh 12s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  font-size: 1.9rem;
+}
+
+.neon-cyan {
+  color: #00f3ff;
+  text-shadow: 
+    0 0 2px #00f3ff, 
+    0 0 5px #00f3ff, 
+    0 0 10px #00f3ff;
+}
+
+.neon-pink {
+  color: #ff00ff;
+  text-shadow: 
+    0 0 2px #ff00ff, 
+    0 0 5px #ff00ff, 
+    0 0 10px #ff00ff;
+}
+
+.neon-lime {
+  color: #ccff00;
+  text-shadow: 
+    0 0 2px #ccff00, 
+    0 0 5px #ccff00, 
+    0 0 10px #ccff00;
+}
+
+.text-slider-container {
+  position: relative;
+  height: 3rem; /* Adjust height based on font size */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ... (Keep rest of your existing CSS) ... */
+
 /* keyframes */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
@@ -23,6 +87,21 @@
   0% { transform: rotate(215deg) translateY(0); opacity: 1; }
   70% { opacity: 1; }
   100% { transform: rotate(215deg) translateY(-500px); opacity: 0; }
+}
+
+@keyframes slide-in-out {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  20%, 80% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }
 
 /* theme / variables */
@@ -61,13 +140,12 @@
 * { box-sizing: border-box; border-color: var(--color-border); }
 html { scroll-behavior: smooth; }
 body {
-  background-color: var(--color-background);
-  color: var(--color-foreground);
-  transition: background-color 300ms, color 300ms;
-  font-feature-settings: "rlig" 1, "calt" 1;
+  @apply bg-background text-foreground;
   margin: 0;
   padding: 0;
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  transition: background-color 300ms, color 300ms;
+  font-feature-settings: "rlig" 1, "calt" 1;
 }
 
 /* components (no tailwind @apply) */
@@ -155,6 +233,10 @@ body {
 .justify-between { justify-content: space-between; }
 .gap-4 { gap: 1rem; }
 .hidden { display: none; }
+
+.animate-slide-in-out {
+  animation: slide-in-out 3s ease-in-out forwards;
+}
 
 /* small responsive helper */
 @media (min-width: 768px) {

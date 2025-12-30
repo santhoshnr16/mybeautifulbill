@@ -6,7 +6,7 @@ export const ThemeToggle = () => {
 	const [isDarkMode, setIsDarkMode] = useState(false);
 
 	useEffect(() => {
-		const theme = localStorage.getItem("theme");
+		const theme = "dark"
 		if (theme === "dark") {
 			document.documentElement.classList.add("dark");
 			setIsDarkMode(true);
