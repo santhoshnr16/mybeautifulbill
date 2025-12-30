@@ -53,7 +53,7 @@ export const AboutMe = () => {
 
 					<div className="grid place-items-center">
 						<img
-							src="public/dp.jpeg"
+							src="/dp.jpeg"
 							alt="avatar"
 							className="w-80 h-90 rounded-full object-cover shadow-md"
 						/>
