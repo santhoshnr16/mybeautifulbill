@@ -6,13 +6,13 @@ export const StarBackground = () => {
 	const meteorTimeouts = useRef([]);
 
 	const generateStars = () => {
-		const numberOfStars = Math.floor((window.innerWidth * window.innerHeight) / 1000);
+		const numberOfStars = Math.floor((window.innerWidth * window.innerHeight) / 100000);
 		const newStars = [];
 
 		for (let i = 0; i < numberOfStars; i++) {
 			newStars.push({
 				id: i,
-				size: Math.random() * 3 + 1,
+				size: Math.random() * 4 + 2,
 				x: Math.random() * 100,
 				y: Math.random() * 100,
 				speed: Math.random() * 0.5 + 0.1,

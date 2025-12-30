@@ -12,10 +12,7 @@ export const App = () => {
 	}, []);
 
 	const DebugOverlay = () => (
-		<div style={{ position: "fixed", right: 12, top: 12, zIndex: 9999, background: "rgba(0,0,0,0.6)", color: "#fff", padding: "6px 8px", borderRadius: 6, fontSize: 12 }}>
-			<div>App mounted</div>
-			<div style={{ fontSize: 11, opacity: 0.9 }}>triggerMeteor: {typeof window !== "undefined" && typeof window.triggerMeteor === "function" ? "yes" : "no"}</div>
-		</div>
+		null
 	);
 
 	return (
