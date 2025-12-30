@@ -1,5 +1,8 @@
-/* Minimal, vanilla CSS to avoid build errors if Tailwind/PostCSS isn't configured */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* your existing custom CSS and variables... */
 /* keyframes */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
